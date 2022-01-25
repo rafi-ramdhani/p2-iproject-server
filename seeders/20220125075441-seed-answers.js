@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require("fs")
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -11,14 +13,19 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const data = require("../db/answers.json")
+    let data = JSON.parse(fs.readFileSync('./db/answers.json', 'utf-8'))
+    let dataInsert = []
 
     data.forEach(el => {
-      el.createdAt = new Date()
-      el.updatedAt = new Date()
+      dataInsert.push({
+        answer: el.answer,
+        QuizId: el.QuizId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
     })
 
-    await queryInterface.bulkInsert("Answers", data)
+    await queryInterface.bulkInsert("Answers", dataInsert)
   },
 
   async down(queryInterface, Sequelize) {

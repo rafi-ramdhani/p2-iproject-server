@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "question": "What is the name of the continent on which most of the action of \"Game of Thrones\" takes place?",
+    "question": "What is the name of the continent on which most of the action of Game of Thrones takes place?",
     "correctAnswer": "Westeros",
     "difficulty": "easy"
   },
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "question": "Aside from being Master of Coin and a member of the King's Small Council, the character of Peter \"Littlefinger\" Baelish from King's Landing also runs what kind of business?",
+    "question": "Aside from being Master of Coin and a member of the King's Small Council, the character of Peter (Littlefinger) Baelish from King's Landing also runs what kind of business?",
     "correctAnswer": "Brothel",
     "difficulty": "easy"
   },
@@ -55,13 +55,13 @@
   },
   {
     "id": 9,
-    "question": "Daenerys Targaryen has three children. These \"children\" are actually what?",
+    "question": "Daenerys Targaryen has three children. These children are actually what?",
     "correctAnswer": "Dragons",
     "difficulty": "easy"
   },
   {
     "id": 10,
-    "question": "It was Jon Arryn's sudden death that brought Ned Stark to King's Landing, where he sought the truth behind Lord Arryn's demise. Who actually killed Robert's first \"Hand of the King?\"",
+    "question": "It was Jon Arryn's sudden death that brought Ned Stark to King's Landing, where he sought the truth behind Lord Arryn's demise. Who actually killed Robert's first Hand of the King?",
     "correctAnswer": "Lysa Arryn",
     "difficulty": "medium"
   },
@@ -85,13 +85,13 @@
   },
   {
     "id": 14,
-    "question": "Each night before sleep Arya Stark speaks the names of those she wishes dead. Who wasn't on little Arya's original \"hit list?\"",
+    "question": "Each night before sleep Arya Stark speaks the names of those she wishes dead. Who wasn't on little Arya's original hit list?",
     "correctAnswer": "Walder Frey",
     "difficulty": "medium"
   },
   {
     "id": 15,
-    "question": "The \"Red Wedding\" claimed the lives of many a Stark. Which member of that northern clan DIDN'T die as a guest of Walder Frey?",
+    "question": "The Red Wedding claimed the lives of many a Stark. Which member of that northern clan DIDN'T die as a guest of Walder Frey?",
     "correctAnswer": "Benjen Stark",
     "difficulty": "medium"
   },
@@ -103,13 +103,13 @@
   },
   {
     "id": 17,
-    "question": "If the Night's Watch is a brotherhood, Jon Snow is guilty of serial fratricide. Who amongst these black brothers was not slain by \"Lord Snow?\"",
+    "question": "If the Night's Watch is a brotherhood, Jon Snow is guilty of serial fratricide. Who amongst these black brothers was not slain by Lord Snow?",
     "correctAnswer": "Jeor Mormont",
     "difficulty": "medium"
   },
   {
     "id": 18,
-    "question": "Oberyn Martell died championing Tyrion Lannister in a \"trial by combat.\" By what nickname was his killer known?",
+    "question": "Oberyn Martell died championing Tyrion Lannister in a trial by combat. By what nickname was his killer known?",
     "correctAnswer": "The Mountain",
     "difficulty": "medium"
   },
@@ -145,14 +145,14 @@
   },
   {
     "id": 24,
-    "question": "What is Daenerys' response to Kraznys mo Nakloz after he tells Missandei to tell Daenerys that her \"beast won't come\" to him after the exchange of Drogon for the army of Unsullied?",
-    "correctAnswer": "\"A dragon is not a slave\"",
+    "question": "What is Daenerys' response to Kraznys mo Nakloz after he tells Missandei to tell Daenerys that her beast won't come to him after the exchange of Drogon for the army of Unsullied?",
+    "correctAnswer": "A dragon is not a slave",
     "difficulty": "hard"
   },
   {
     "id": 25,
     "question": "What is the first thing Jon Snow says in the first episode in season 4?",
-    "correctAnswer": "\"Last time I saw him, he was in the courtyard at Winterfell\".",
+    "correctAnswer": "Last time I saw him, he was in the courtyard at Winterfell.",
     "difficulty": "hard"
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": 27,
     "question": "What were Tywin Lannister's last words before Tyrion killed him?",
-    "correctAnswer": "\"You're no son of mine\".",
+    "correctAnswer": "You're no son of mine.",
     "difficulty": "hard"
   },
   {

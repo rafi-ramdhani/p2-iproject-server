@@ -1,4 +1,4 @@
-const { Quizes } = require("../models/index.js")
+const { Quizes, Answers } = require("../models/index.js")
 let Sequelize = require('sequelize')
 
 class QuizController {
@@ -16,7 +16,29 @@ class QuizController {
         }
       })
 
-      res.status(200).json(quizes)
+      const answers = await Answers.findAll()
+
+      let quizesOutput = []
+
+      quizes.forEach(el => {
+        let obj = {
+          id: el.id,
+          question: el.question,
+          correctAnswer: el.correctAnswer,
+          difficulty: el.difficulty,
+          answers: []
+        }
+
+        answers.forEach(el2 => {
+          if (el2.QuizId === el.id) {
+            obj.answers.push(el2.answer)
+          }
+        })
+
+        quizesOutput.push(obj)
+      })
+
+      res.status(200).json(quizesOutput)
     } catch (err) {
       next(err)
     }

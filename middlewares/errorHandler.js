@@ -12,6 +12,10 @@ const errorHandler = (err, req, res, next) => {
       res.status(401).json({ message: "Invalid username/password" })
       break;
 
+    case "Insufficient":
+      res.status(401).json({ message: "Points is insufficient" })
+      break;
+
     default:
       res.status(500).json(err.name)
       break;

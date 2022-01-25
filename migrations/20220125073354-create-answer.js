@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       answer: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       QuizId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -19,7 +21,7 @@ module.exports = {
           },
           key: "id",
           onUpdate: "CASCADE",
-          onDelete: "SET NULL"
+          onDelete: "CASCADE"
         }
       },
       createdAt: {

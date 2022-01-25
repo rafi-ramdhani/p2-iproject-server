@@ -3,6 +3,13 @@ node_modules
 
 npx sequelize-cli model:generate --name User --attributes email:string,password:string,username:string,profilePicture:string,points:integer
 
+npx sequelize-cli model:generate --name Quiz --attributes question:string,correctAnswer:string,difficulty:string
+
+npx sequelize-cli model:generate --name Character --attributes fetchIdAPI:integer,price:integer
+
+npx sequelize-cli model:generate --name Collections --attributes fetchIdAPI:integer,UserId:integer
+
+npx sequelize-cli model:generate --name Answer --attributes answer:string,QuizId:integer
 
 
 

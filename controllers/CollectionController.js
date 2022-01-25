@@ -1,5 +1,5 @@
 const axios = require("axios")
-const { Collection } = require("../models")
+const { Collection, Character } = require("../models")
 
 class CollectionController {
 
@@ -11,7 +11,16 @@ class CollectionController {
         UserId: +req.currentUser.id
       })
 
-      res.status(200).json(collection)
+      const characterPrice = await Character.findOne({
+        where: {
+          fetchIdAPI: +req.params.characterId
+        }
+      })
+
+      req.collection = {
+        price: characterPrice.price,
+      }
+      next()
     } catch (err) {
       next(err)
     }

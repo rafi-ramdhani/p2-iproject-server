@@ -1,6 +1,7 @@
 const { User } = require("../models")
 const { createHash, compareHash } = require("../helpers/bcrypt")
 const { createToken } = require("../helpers/jwt")
+const axios = require("axios")
 
 class UserController {
 
@@ -51,6 +52,52 @@ class UserController {
       res.status(200).json({
         access_token: token
       })
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  // Earn points
+  static async earnPoints(req, res, next) {
+    try {
+      const { earnedPoints } = req.body
+
+      const user = await User.findByPk(+req.currentUser.id)
+
+      const earned = await User.update({
+        points: +user.points + +earnedPoints
+      }, {
+        where: {
+          id: +req.currentUser.id
+        },
+        returning: true
+      })
+
+      res.status(200).json({ message: `User with id ${earned[1][0].id} has earned ${earnedPoints} and now has ${earned[1][0].points}` })
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  // Spend points
+  static async spendPoints(req, res, next) {
+    try {
+      const user = await User.findByPk(+req.currentUser.id)
+
+      if (+user.points < +req.collection.price) {
+        throw { name: "Insufficient" }
+      }
+
+      const spend = await User.update({
+        points: +user.points - +req.collection.price
+      }, {
+        where: {
+          id: +req.currentUser.id
+        },
+        returning: true
+      })
+
+      res.status(201).json({ message: `User with id ${user.id} has bought character with id ${+req.params.characterId} and now has ${spend[1][0].points} points` })
     } catch (err) {
       next(err)
     }

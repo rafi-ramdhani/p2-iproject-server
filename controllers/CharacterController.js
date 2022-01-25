@@ -20,6 +20,25 @@ class CharacterController {
     }
   }
 
+  // Get a character
+  static async getCharacter(req, res, next) {
+    try {
+      const character = await axios.get(`https://thronesapi.com/api/v2/Characters/${req.params.characterId}`)
+
+      const characterPrice = await Character.findOne({
+        where: {
+          fetchIdAPI: +req.params.characterId
+        }
+      })
+
+      character.data.price = characterPrice.price
+
+      res.status(200).json(character.data)
+    } catch (err) {
+      next(err)
+    }
+  }
+
 }
 
 module.exports = CharacterController

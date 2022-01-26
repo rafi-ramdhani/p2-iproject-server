@@ -1,4 +1,4 @@
-const { User } = require("../models")
+const { User, Character } = require("../models")
 const { createHash, compareHash } = require("../helpers/bcrypt")
 const { createToken } = require("../helpers/jwt")
 const axios = require("axios")
@@ -31,6 +31,7 @@ class UserController {
     try {
       const { username, password } = req.body
 
+
       if (!username || !password) {
         throw { name: "InvalidUsernamePassword" }
       }
@@ -45,9 +46,7 @@ class UserController {
         throw { name: "InvalidUsernamePassword" }
       }
 
-      const token = createToken({
-        id: +foundUser.id
-      })
+      const token = createToken({ id: +foundUser.id })
 
       res.status(200).json({
         access_token: token
@@ -79,25 +78,16 @@ class UserController {
     }
   }
 
-  // Spend points
-  static async spendPoints(req, res, next) {
+  // Get User
+  static async getUser(req, res, next) {
     try {
       const user = await User.findByPk(+req.currentUser.id)
 
-      if (+user.points < +req.collection.price) {
-        throw { name: "Insufficient" }
-      }
-
-      const spend = await User.update({
-        points: +user.points - +req.collection.price
-      }, {
-        where: {
-          id: +req.currentUser.id
-        },
-        returning: true
+      res.status(200).json({
+        username: user.username,
+        points: user.points,
+        profilePicture: user.profilePicture
       })
-
-      res.status(201).json({ message: `User with id ${user.id} has bought character with id ${+req.params.characterId} and now has ${spend[1][0].points} points` })
     } catch (err) {
       next(err)
     }

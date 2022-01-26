@@ -8,7 +8,7 @@ const errorHandler = require("../middlewares/errorHandler.js")
 collectionRouter.get("/collections", authentication, CollectionController.getCollections)
 
 // Buy a character and add it to collections while decreasing user points
-collectionRouter.post("/collections/:characterId", authentication, CollectionController.postCollection, UserController.spendPoints)
+collectionRouter.post("/collections/:characterId", authentication, CollectionController.postCollection)
 
 collectionRouter.use(errorHandler)
 

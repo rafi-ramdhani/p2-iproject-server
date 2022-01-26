@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
       break;
 
     case "Insufficient":
-      res.status(40).json({ message: "Insufficient points" })
+      res.status(400).json({ message: "Insufficient points" })
       break;
 
     case "Error":

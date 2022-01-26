@@ -6,7 +6,7 @@ class QuizController {
   // Get 5 Quizes
   static async get5Quizes(req, res, next) {
     try {
-      const { difficulty } = req.body
+      const { difficulty } = req.query
 
       const quizes = await Quizes.findAll({
         order: Sequelize.literal('random()'),

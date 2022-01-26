@@ -1,15 +1,12 @@
 const axios = require("axios")
-const { Collection, Character } = require("../models")
+const { User, Collection, Character } = require("../models")
 
 class CollectionController {
 
   // Buy a character
   static async postCollection(req, res, next) {
     try {
-      const collection = await Collection.create({
-        fetchIdAPI: +req.params.characterId,
-        UserId: +req.currentUser.id
-      })
+      const user = await User.findByPk(+req.currentUser.id)
 
       const characterPrice = await Character.findOne({
         where: {
@@ -17,10 +14,25 @@ class CollectionController {
         }
       })
 
-      req.collection = {
-        price: characterPrice.price,
+      if (+user.points < +characterPrice.price) {
+        throw { name: "Insufficient" }
       }
-      next()
+
+      await Collection.create({
+        fetchIdAPI: +req.params.characterId,
+        UserId: +req.currentUser.id
+      })
+
+      const spend = await User.update({
+        points: +user.points - +characterPrice.price
+      }, {
+        where: {
+          id: +req.currentUser.id
+        },
+        returning: true
+      })
+
+      res.status(201).json({ message: `User with id ${user.id} has bought character with id ${+req.params.characterId} and now has ${spend[1][0].points} points` })
     } catch (err) {
       next(err)
     }
@@ -34,7 +46,8 @@ class CollectionController {
       const collections = await Collection.findAll({
         where: {
           UserId: +req.currentUser.id
-        }
+        },
+        order: [["createdAt", "DESC"]]
       })
 
       const collectionsWithCharacters = await axios.get("https://thronesapi.com/api/v2/Characters")

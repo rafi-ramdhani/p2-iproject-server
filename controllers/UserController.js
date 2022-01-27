@@ -45,7 +45,7 @@ class UserController {
       if (!foundUser || !compareHash(password, foundUser.password)) {
         throw { name: "InvalidUsernamePassword" }
       }
-
+      console.log(foundUser)
       const token = createToken({ id: +foundUser.id })
 
       res.status(200).json({

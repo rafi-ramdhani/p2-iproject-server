@@ -1,5 +1,6 @@
 const { Quizes, Answers } = require("../models/index.js")
 let Sequelize = require('sequelize')
+const axios = require("axios")
 
 class QuizController {
 
@@ -40,6 +41,18 @@ class QuizController {
 
       res.status(200).json(quizesOutput)
     } catch (err) {
+      next(err)
+    }
+  }
+
+  // Weather
+  static async APOD(req, res, next) {
+    try {
+      const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.APIKEY}`)
+
+      res.status(200).json(response.data)
+    } catch (err) {
+      console.log(err)
       next(err)
     }
   }

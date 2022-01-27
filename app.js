@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require('express')
 const app = express()
 const port = 3000
@@ -20,24 +24,18 @@ io.on("connection", (socket) => {
     console.log("User disconnected")
   })
 
-  socket.on("sendMessageToServer", (payload) => {
+  socket.on("sendChat", (payload) => {
     arrOfChats.push(payload)
 
-    console.log(arrOfChats)
+    console.log(payload)
 
     io.emit("chat", arrOfChats)
-  })
-
-  socket.on("refresh", () => {
-    console.log('hai')
-
-    socket.emit("helo")
   })
 })
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 const route = require("./routes")
 app.use(route)
